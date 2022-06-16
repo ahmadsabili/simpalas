@@ -1,0 +1,1 @@
+<img src="{{ asset('/dist/img/palas.png') }}" alt="logo-palas" style="width: 85px;">
