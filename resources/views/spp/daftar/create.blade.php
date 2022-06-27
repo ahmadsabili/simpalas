@@ -1,5 +1,5 @@
 @extends('layouts.main', [
-    'title' => 'Tambah Sumbangan Komite'
+    'title' => 'Tambah SPP'
 ])
 
 @include('spp.sidebar-item')
@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Tambah Siswa</h1>
+        <h1>Tambah SPP</h1>
       </div>
     </div>
   </div>

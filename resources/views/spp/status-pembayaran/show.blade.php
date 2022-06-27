@@ -26,6 +26,9 @@
         <div class="card">
           <div class="card-header">
             <a href="{{ route('spp.status.index') }}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-circle-left"></i> &nbsp; Kembali</a>
+            <div class="float-right">
+              <a href="{{ route('spp.pembayaran.create', $nisn->nisn) }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> &nbsp; Tambah Pembayaran</a>
+            </div>
           </div>
           <div class="card-body">
             @if ($pembayaran->count() > 0)
@@ -57,7 +60,7 @@
                           <td>{{ $row->updated_at }}</td>
                           <td>{{ $row->bulan }}</td>
                           <td>{{ $row->tahun_ajaran }}</td>
-                          <td>{{ $row->nominal }}</td>
+                          <td>@currency($row->nominal)</td>
                           <td>
                             <span class="badge bg-success">DIBAYAR</span>
                           </td>

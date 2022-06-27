@@ -98,7 +98,7 @@
                         <table class="table table-striped table-sm table-bordered" id="books-table">
                             <thead>
                                 <th>
-                                    <input id="checkall" class='' type="checkbox" name="id_buku[]">
+                                    <input id="checkall" class='' type="checkbox" name="">
                                     <label class="form-check-label" for="checkall">
                                         Pilih semua
                                     </label>

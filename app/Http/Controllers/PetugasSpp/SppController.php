@@ -68,10 +68,9 @@ class SppController extends Controller
 
             if (!$pembayaran) {
                 DB::transaction(function() use($request) {
-                    foreach ($request->bulan as $month) {   
+                    foreach ($request->bulan as $month) {
                         PembayaranSpp::create([
                             'id_siswa' => $request->id_siswa,
-                            'kelas' => $request->kelas,
                             'tahun_ajaran' => $request->tahun_ajaran,
                             'bulan' => $month,
                             'nominal' => $request->nominal,
@@ -83,7 +82,7 @@ class SppController extends Controller
                     ->with('success', 'Pembayaran berhasil disimpan!');
             }else{
                 return back()
-                    ->with('error', 'Sumbangan Komite sudah dibayar!');
+                    ->with('error', 'Tagihan SPP sudah dibayar!');
             }
     }
 
@@ -99,8 +98,9 @@ class SppController extends Controller
     }
 
     public function statusShow(Request $request, $id) {
-        $pembayaran = PembayaranSpp::select('*')->with(['siswa'])->where('id_siswa', $id)->orderBy('updated_at', 'desc')->get();
-        return view('spp.status-pembayaran.show', compact('pembayaran'));
+        $pembayaran = PembayaranSpp::select('*')->with(['siswa'])->where('id_siswa', $id)->orderBy('updated_at', 'asc')->get();
+        $nisn = Student::select('nisn')->where('id', $id)->first();
+        return view('spp.status-pembayaran.show', compact('pembayaran', 'nisn'));
     }
 
     public function daftarSppIndex() {
@@ -120,7 +120,7 @@ class SppController extends Controller
 
     public function daftarSppStore(Request $request) {
         Spp::create($request->all());
-        return redirect()->route('spp.daftar.index')->with('success','Sumbangan komite berhasil ditambahkan!');
+        return redirect()->route('spp.daftar.index')->with('success','SPP berhasil ditambahkan!');
     }
 
     public function daftarSppEdit() {
@@ -134,7 +134,7 @@ class SppController extends Controller
 
     public function riwayatIndex() {
         if(request()->ajax()) {
-            return datatables()->of(PembayaranSpp::select('*')->with(['siswa']))
+            return datatables()->of(PembayaranSpp::select('*')->with(['siswa.kelas']))
             ->editColumn('updated_at', function ($user) {
                 return $user->updated_at ? with(new Carbon($user->updated_at))->format('Y/m/d') : '';;
             })

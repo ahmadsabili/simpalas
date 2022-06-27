@@ -20,8 +20,8 @@ class Student extends Model
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
-    public function komite() {
-        return $this->hasMany(Spp::class);
+    public function tagihan_spp() {
+        return $this->hasMany(PembayaranSpp::class);
     }
 
     public function tagihan_buku() {

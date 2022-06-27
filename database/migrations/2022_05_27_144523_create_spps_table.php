@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('komite', function (Blueprint $table) {
+        Schema::create('spp', function (Blueprint $table) {
             $table->id();
             $table->string('tahun_ajaran');
             $table->string('kelas');

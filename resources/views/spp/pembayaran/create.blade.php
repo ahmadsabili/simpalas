@@ -27,7 +27,7 @@
           <form action="{{ route('spp.pembayaran.store') }}" method="POST">
             @csrf
             <div class="card-header">
-              <a href="{{ route('spp.pembayaran.index') }}" class="btn btn-sm btn-danger">
+              <a href="{{ url()->previous() }}" class="btn btn-sm btn-danger">
                 <i class="fas fa-window-close"></i>&nbsp; Batalkan
               </a>
             </div>
@@ -49,7 +49,7 @@
                   <div class="col-sm-4">
                     <div class="form-group">
                       <label>Kelas</label>
-                      <input type="text" class="form-control" name="kelas" value="{{ $siswa->kelas->nama_kelas }}" readonly>
+                      <input type="text" class="form-control" value="{{ $siswa->kelas->nama_kelas }}" readonly>
                     </div>
                   </div>
                 </div>

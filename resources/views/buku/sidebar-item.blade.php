@@ -5,7 +5,7 @@
   </div>
   <div class="info">
     <a href="#" class="d-block">Ahmad Sabili</a>
-    <small class="d-block text-primary">Petugas Buku</small>
+    <small class="d-block text-success">Petugas Koperasi</small>
   </div>
 </div>
 
@@ -14,7 +14,7 @@
     <!-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library -->
     <li class="nav-item">
-      <a href="{{ route('spp.index') }}" class="nav-link {{ (request()->is('buku')) ? 'active' : '' }}">
+      <a href="{{ route('buku.index') }}" class="nav-link {{ (request()->is('buku')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
         <p>
           Dashboard

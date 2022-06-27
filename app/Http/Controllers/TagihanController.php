@@ -28,7 +28,9 @@ class TagihanController extends Controller
     public function show(Request $request, $id) {
         $tagihan = BookFee::select('*')->with(['siswa'])->where('id_siswa', $id)->get();
         $siswa = Student::select('nisn')->where('id', $id)->first();
-        return view('buku.tagihan.show', compact('tagihan', 'siswa'));
+        $belumBayar = BookFee::where('id_siswa', $id)->where('status', 'Belum Dibayar')->sum('nominal');
+        $sudahBayar = BookFee::where('id_siswa', $id)->where('status', 'Dibayar')->sum('nominal');
+        return view('buku.tagihan.show', compact('tagihan', 'siswa', 'belumBayar','sudahBayar'));
     }
 
     public function create($nisn) {
@@ -58,7 +60,7 @@ class TagihanController extends Controller
                     }
                 });
                 return redirect()->route('tagihan-buku.show', $request->id_siswa)
-                    ->with('success', 'Pembayaran berhasil disimpan !');
+                    ->with('success', 'Tagihan berhasil ditambahkan  !');
             } else {
                 return back()
                     ->with('error', 'Tagihan buku sudah ada !');

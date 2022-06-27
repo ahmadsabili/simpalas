@@ -12,6 +12,7 @@ use App\Http\Controllers\PetugasSpp;
 use App\Http\Controllers\BookListController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TagihanController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,9 @@ Route::post('/admin/students/import', function () {
 Route::resource('/admin/classes', KelasController::class);
 Route::post('delete-class', [KelasController::class,'destroy']);
 
+//User
+Route::resource('/admin/users', UserController::class);
+
 // Role SPP
 Route::prefix('komite')->group(function(){
     Route::get('/', [PetugasSpp\SppController::class,'sppDashboard'])->name('spp.index');
@@ -57,6 +61,10 @@ Route::prefix('komite')->group(function(){
     Route::post('pembayaran/tambah-pembayaran/', [PetugasSpp\SppController::class,'storeBayar'])->name('spp.pembayaran.store');
     Route::get('pembayaran/get-kelas', [PetugasSpp\SppController::class,'getKelas'])->name('spp.pembayaran.getKelas');
     Route::get('pembayaran/get-nominal', [PetugasSpp\SppController::class,'getNominal'])->name('spp.pembayaran.getNominal');
+
+    //Status Pembayaran
+    Route::get('pembayaran/status-pembayaran/', [PetugasSpp\SppController::class,'statusIndex'])->name('spp.status.index');
+    Route::get('pembayaran/status-pembayaran/detail/{id}', [PetugasSpp\SppController::class,'statusShow'])->name('spp.status.show');
     
     //Daftar nominal SPP
     Route::get('daftar-komite/', [PetugasSpp\SppController::class,'daftarSppIndex'])->name('spp.daftar.index');
@@ -65,20 +73,13 @@ Route::prefix('komite')->group(function(){
     Route::get('daftar-komite/edit/{id}', [PetugasSpp\SppController::class,'daftarSppEdit'])->name('spp.daftar.edit');
     Route::post('daftar-komite/delete-spp', [PetugasSpp\SppController::class,'daftarSppDestroy']);
 
-    //Status Pembayaran
-    Route::get('status-pembayaran/', [PetugasSpp\SppController::class,'statusIndex'])->name('spp.status.index');
-    Route::get('status-pembayaran/detail/{id}', [PetugasSpp\SppController::class,'statusShow'])->name('spp.status.show');
 
     //Riwayat Pembayaran
     Route::get('riwayat-pembayaran/', [PetugasSpp\SppController::class,'riwayatIndex'])->name('spp.riwayat.index');
 });
 
 Route::prefix('buku')->group(function() {
-    Route::get('/', function(){
-        $student = Student::count();
-        $class = Kelas::count();
-        return view('buku.dashboard', compact('student', 'class'));
-    })->name('buku.index');
+    Route::get('/', [DashboardController::class,'bukuDashboard'])->name('buku.index');
 
     //Daftar Buku
     Route::get('daftar-buku/', [BookListController::class,'index'])->name('buku.daftar.index');

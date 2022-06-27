@@ -21,7 +21,7 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('students.index') }}", 	
-            order: [ 1, 'asc' ],
+            order: [ 3, 'asc' ],
             columns: [
               {data: null, sortable: false,
                   render: function (data, type, row, meta) {

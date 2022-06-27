@@ -74,7 +74,7 @@
                 {data: 'updated_at', name:'updated_at'},
                 {data: 'siswa.nisn', name: 'siswa.nisn'},
                 {data: 'siswa.nama', name: 'siswa.nama'},
-                {data: 'kelas', name: 'kelas'},
+                {data: 'siswa.kelas.nama_kelas', name: 'siswa.kelas.nama_kelas'},
                 {data: 'tahun_ajaran', name: 'tahun_ajaran'},
                 {data: 'bulan', name: 'bulan'},
             ]

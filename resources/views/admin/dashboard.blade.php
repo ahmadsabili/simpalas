@@ -25,20 +25,19 @@
         <p>Kelas</p>
       </x-card>
       <!-- ./col -->
-      <x-card color="bg-warning" value="{{ $user }}" icon="fas fa-user">
-        <p>User</p>
+      <x-card color="bg-warning" value="1" icon="fas fa-user">
+        <p>User Komite</p>
       </x-card>
       <!-- ./col -->
       <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>65</h3>
-
-            <p>Unique Visitors</p>
+            <h3>1</h3>
+            <p>User Buku</p>
           </div>
           <div class="icon">
-            <i class="ion ion-pie-graph"></i>
+            <i class="fas fa-user"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
@@ -160,5 +159,6 @@
     );
 
   </script>
+  
   @endpush
 @endsection

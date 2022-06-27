@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pembayaran_komite', function (Blueprint $table) {
+        Schema::create('pembayaran_spp', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_siswa')->references('id')->on('siswa');
-            $table->string('kelas');
             $table->string('tahun_ajaran');
             $table->string('bulan');
             $table->bigInteger('nominal');

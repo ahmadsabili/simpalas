@@ -47,12 +47,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @php
-                      $i = 0
-                  @endphp
                     @foreach ($tagihan  as $row)
                         <tr>
-                          <td>{{ ++$i }}</td>
+                          <td></td>
                           <td>{{ $row->siswa->nisn }}</td>
                           <td>{{ $row->siswa->nama }}</td>
                           <td>{{ $row->kelas }}</td>
@@ -88,20 +85,59 @@
         </div>
       </div>
     </div>
+    <div class="row">
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-sm-6">
+                <p class="font-weight-bold">Total Tagihan Belum Dibayar</p>
+                <div class="alert alert-danger" role="alert">
+                  <strong>
+                    @currency($belumBayar)
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-sm-6">
+                <p class="font-weight-bold">Total Tagihan Dibayar</p>
+                <div class="alert alert-success" role="alert">
+                  <strong>
+                    @currency($sudahBayar)
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-    $(function () {
-      $('#status-table').DataTable();
+    $(document).ready(function () {
+    var t = $('#status-table').DataTable({
+        columnDefs: [
+            {
+                searchable: false,
+                orderable: false,
+                targets: 0,
+            },
+        ],
+        order: [[6, 'desc']],
     });
-    $(function () {
-      $('#table').DataTable({
-        "lengthMenu": [
-                      [ 12, 24, 36, -1 ],
-                      [ '12', '24', '36', 'All' ]
-                  ],
-      });
-    });
+ 
+    t.on('order.dt search.dt', function () {
+        let i = 1;
+ 
+        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });
+    }).draw();
+});
   </script>
   @include('components.alert')
 @endsection

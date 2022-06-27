@@ -17,12 +17,10 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'nisn' => $this->faker->unique()->sentence(3),
+            'nisn' => $this->faker->isbn10(),
             'nama' => $this->faker->name(),
-            'kelas' => $this->faker->sentence(),
-            'jenis_kelamin' => $this->faker->sentence(),
-            'alamat' => $this->faker->sentence(),
-            'tahun_ajaran' => $this->faker->sentence()
+            'kelas_id' => $this->faker->numberBetween($min = 1, $max = 25),
+            'jenis_kelamin' => $this->faker->randomElement($array = array('Laki-laki', 'Perempuan')),
         ];
     }
 }

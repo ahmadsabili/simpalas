@@ -1,5 +1,5 @@
 @extends('layouts.main', [
-    'title' => 'Daftar Sumbangan Komite'
+    'title' => 'Daftar SPP'
 ])
 
 @push('meta-token')
@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Daftar Sumbangan Komite</h1>
+        <h1>Daftar SPP</h1>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
         <div class="card">
           <div class="card-header">
             <div class="float-right">
-                  <a href="{{ route('spp.daftar.create') }}" onclick="add()" class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Tambah Komite</a>
+                  <a href="{{ route('spp.daftar.create') }}" onclick="add()" class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp; Tambah SPP</a>
             </div>
           </div>
           <div class="card-body">

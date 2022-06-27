@@ -109,12 +109,12 @@ class BookFeeController extends Controller
     public function tagihanShow(Request $request, $id) {
         $tagihan = BookFee::select('*')->with(['siswa'])->where('id_siswa', $id)->get();
         
-        return view('buku.tagihan.show', compact('tagihan'));
+        return view('buku.tagihan.show', compact('tagihan', 'belumBayar'));
     }
 
     public function tagihanCreate(Request $request,  $nisn) {
         $buku = BookList::select('*')->groupBy('kelas')->get();
         $siswa = Student::with(['kelas'])->where('nisn', $nisn)->first();
-        return view('spp.pembayaran.create', compact('buku', 'siswa'));
+        return view('tagihan-buku.create', compact('buku', 'siswa'));
     }
 }

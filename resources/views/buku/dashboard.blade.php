@@ -18,17 +18,17 @@
 <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <x-card color="bg-info" value="{{ $student }}" icon="ion ion-person-stalker">
+      <x-card color="bg-info" value="837" icon="ion ion-person-stalker">
         <p>Siswa</p>
       </x-card>
-      <x-card color="bg-success" value="{{ $class }}" icon="fas fa-school">
-        <p>Kelas</p>
+      <x-card color="bg-success" value="Rp {{ $sumToday }}" icon="fas fa-money-bill">
+        <p>Penerimaan Hari Ini</p>
       </x-card>
-      <x-card color="bg-warning" value="{{ $class }}" icon="fas fa-school">
-        <p>Kelas</p>
+      <x-card color="bg-warning" value="Rp {{ $sumMonth }}" icon="fas fa-school">
+        <p>Penerimaan Bulan Ini</p>
       </x-card>
-      <x-card color="bg-danger" value="{{ $class }}" icon="fas fa-school">
-        <p>Belum Bayar</p>
+      <x-card color="bg-danger" value="{{ $bookList }}" icon="fas fa-school">
+        <p>Jumlah Buku</p>
       </x-card>
     </div>
   </div>
