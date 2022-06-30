@@ -65,7 +65,7 @@
                     </div>
                     <div class="card-footer float-right">
                       <button type="submit" class="btn btn-default mr-2">Batal</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                      <button type="submit" class="btn btn-primary" name="Simpan">Simpan</button>
                     </div>
                 </form>
           </div>

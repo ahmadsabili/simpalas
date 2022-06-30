@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\PetugasSpp;
 
+use App\Exports\PembayaranSppExport;
 use App\Helpers\Bulan;
 use App\Http\Controllers\Controller;
 use App\Models\SppFee;
@@ -12,6 +13,7 @@ use App\Models\PembayaranSpp;
 use App\Models\Spp;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class SppController extends Controller
@@ -148,5 +150,14 @@ class SppController extends Controller
 
     public function belumBayar() {
         PembayaranSpp::select('*')->where('');
+    }
+
+    public function createExportExcel()
+    {
+        return view('spp.riwayat.export-excel');
+    }
+
+    public function exportExcel(Request $request) {
+        return (new PembayaranSppExport($request->startDate, $request->endDate))->download('pembayaran-komite.xlsx');
     }
 }

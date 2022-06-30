@@ -17,7 +17,7 @@ class KelasFactory extends Factory
     public function definition()
     {
         return [
-            'nama_kelas' => $this->faker->name()
+            'nama_kelas' => $this->faker->country()
         ];
     }
 }

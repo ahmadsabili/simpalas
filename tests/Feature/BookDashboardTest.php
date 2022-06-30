@@ -18,6 +18,7 @@ class BookDashboardTest extends TestCase
     {
         $response = $this->get('/buku');
         $response->assertStatus(200);
+        $response->assertSee('Dashboard');
     }
 
     public function test_data_dashboard_buku_dapat_ditampilkan()

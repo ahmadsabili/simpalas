@@ -73,9 +73,12 @@ Route::prefix('komite')->group(function(){
     Route::get('daftar-komite/edit/{id}', [PetugasSpp\SppController::class,'daftarSppEdit'])->name('spp.daftar.edit');
     Route::post('daftar-komite/delete-spp', [PetugasSpp\SppController::class,'daftarSppDestroy']);
 
-
     //Riwayat Pembayaran
     Route::get('riwayat-pembayaran/', [PetugasSpp\SppController::class,'riwayatIndex'])->name('spp.riwayat.index');
+
+    //Export to Excel
+    Route::get('riwayat-pembayaran/export-excel/', [PetugasSpp\SppController::class,'createExportExcel'])->name('spp.export.excel.create');
+    Route::get('export-excel', [PetugasSpp\SppController::class,'exportExcel'])->name('spp.export.excel');
 });
 
 Route::prefix('buku')->group(function() {

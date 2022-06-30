@@ -19,7 +19,7 @@ class StudentFactory extends Factory
         return [
             'nisn' => $this->faker->isbn10(),
             'nama' => $this->faker->name(),
-            'kelas_id' => $this->faker->numberBetween($min = 1, $max = 25),
+            'kelas_id' => $this->faker->numberBetween($min = 1, $max = 10),
             'jenis_kelamin' => $this->faker->randomElement($array = array('Laki-laki', 'Perempuan')),
         ];
     }

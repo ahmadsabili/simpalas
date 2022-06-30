@@ -24,6 +24,11 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
+          <div class="card-header">
+            <a href="{{ route('spp.export.excel.create') }}" class="btn btn-sm btn-info float-right">
+              <i class="fas fa-file-export"></i>&nbsp; Export to Excel
+            </a>
+          </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="students-table">

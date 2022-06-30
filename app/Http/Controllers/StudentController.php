@@ -57,7 +57,6 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         Student::create($request->all());
-       
         return redirect()->route('students.index')->with('success','Data berhasil ditambahkan!');
     }
 
