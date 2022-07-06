@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BookList;
 use App\Http\Requests\StoreBookListRequest;
 use App\Http\Requests\UpdateBookListRequest;
+use Illuminate\Http\Request;
 
 class BookListController extends Controller
 {
@@ -64,9 +65,10 @@ class BookListController extends Controller
      * @param  \App\Models\BookList  $bookList
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookList $bookList)
+    public function edit($id)
     {
-        //
+        $book = BookList::select('*')->where('id', $id)->first();
+        return view('buku.daftar.edit', compact('book'));
     }
 
     /**
@@ -76,9 +78,10 @@ class BookListController extends Controller
      * @param  \App\Models\BookList  $bookList
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookListRequest $request, BookList $bookList)
+    public function update($id)
     {
-        //
+        BookList::find($id)->update(request()->all());
+        return redirect(route('buku.daftar.index'))->with('success', 'Buku berhasil diperbarui!');
     }
 
     /**
@@ -87,8 +90,9 @@ class BookListController extends Controller
      * @param  \App\Models\BookList  $bookList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookList $bookList)
+    public function destroy($id)
     {
-        //
+        $buku = BookList::where('id', $id)->delete();
+        return response()->json($buku);
     }
 }

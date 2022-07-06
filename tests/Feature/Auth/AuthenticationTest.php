@@ -11,14 +11,19 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_login_screen_can_be_rendered()
+    public function test_halaman_login_dapat_ditampilkan()
     {
         $response = $this->get('/login');
-
         $response->assertStatus(200);
+        $response->assertViewIs('auth.login');
+        $response->assertSeeText('Login');
+        $response->assertSeeText('Email');
+        $response->assertSeeText('Password');
+        $response->assertSeeText('Remember me');
+        $response->assertSeeText('Lupa password?');
     }
 
-    public function test_users_can_authenticate_using_the_login_screen()
+    public function test_user_dapat_melakukan_login()
     {
         $user = User::factory()->create();
 
@@ -31,7 +36,7 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
-    public function test_users_can_not_authenticate_with_invalid_password()
+    public function test_user_tidak_bisa_login_dengan_password_yang_salah()
     {
         $user = User::factory()->create();
 

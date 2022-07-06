@@ -22,8 +22,7 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         if(request()->ajax()) {
-            $model = Student::with('kelas');
-            return datatables()->of(Student::select('*')->with(['kelas']))
+            return datatables()->of(Student::select('siswa.*')->with('kelas'))
             ->addColumn('action', 'admin.students.action')
             ->rawColumns(['action'])
             ->addIndexColumn()
@@ -79,7 +78,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('admin.students.edit', compact('student'));
+        $class = Kelas::all();
+        return view('admin.students.edit', compact('student', 'class'));
     }
 
     /**
@@ -92,7 +92,7 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest $request, $id)
     {
         Student::find($id)->update(request()->all());
-        return redirect()->route('classes.index')->with('success','Siswa berhasil diperbarui !');
+        return redirect()->route('students.index')->with('success','Siswa berhasil diperbarui !');
     }
 
     /**

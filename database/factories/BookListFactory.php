@@ -17,7 +17,9 @@ class BookListFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'judul' => $this->faker->name(),
+            'kelas' => $this->faker->randomElement($array = array('X', 'XI', 'XII')),
+            'harga' => $this->faker->numberBetween($min = 10000, $max = 100000),
         ];
     }
 }

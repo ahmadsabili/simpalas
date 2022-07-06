@@ -97,7 +97,7 @@ class BookFeeController extends Controller
     public function tagihanIndex() {
         $siswa = Student::select('id')->get();
         if(request()->ajax()) {
-            return datatables()->of(Student::select('*')->with(['kelas']))
+            return datatables()->of(Student::select('siswa.*')->with(['kelas']))
             ->addColumn('action', 'buku.tagihan.action')
             ->rawColumns(['action'])
             ->addIndexColumn()

@@ -19,10 +19,10 @@ class CheckRole
         if ($role == 'admin' && auth()->user()->role != 'admin' ) {
             abort(403);
         }
-        if ($role == 'user' && auth()->user()->role != 'user' ) {
+        if ($role == 'spp' && auth()->user()->role != 'spp' ) {
             abort(403);
         }
-        if ($role == 'guest' && auth()->user()->role != 'guest' ) {
+        if ($role == 'buku' && auth()->user()->role != 'buku' ) {
             abort(403);
         }
         return $next($request);

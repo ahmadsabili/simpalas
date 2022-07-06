@@ -22,7 +22,12 @@ class UserController extends Controller
         if(User::where('email', $request->email)->exists()) {
             return redirect()->route('users.create')->with('error','Email sudah terdaftar !');
         }
-        User::create($request->all());
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role
+        ]);
         return redirect()->route('users.index')->with('success','User berhasil ditambahkan!');
     }
 

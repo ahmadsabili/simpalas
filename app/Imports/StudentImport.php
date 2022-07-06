@@ -2,25 +2,28 @@
 
 namespace App\Imports;
 
+use App\Models\Kelas;
 use App\Models\Student;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class StudentImport implements ToModel
+class StudentImport implements ToModel, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+    private $classes;
+    public function __construct()
+    {
+        $this->classes = Kelas::select('id', 'nama_kelas')->get();
+    }
+
+
     public function model(array $row)
     {
+        $class = $this->classes->where('nama_kelas', $row['kelas'])->first();
         return new Student([
-            'nisn' => $row[0],
-            'nama' => $row[1],
-            'kelas' => $row[2],
-            'jenis_kelamin' => $row[3],
-            'alamat' => $row[4],
-            'tahun_ajaran' => $row[5]
+            'nisn' => $row['nisn'],
+            'nama' => $row['nama'],
+            'kelas_id' => $class->id ?? null,
+            'jenis_kelamin' => $row['jenis_kelamin'],
         ]);
     }
 }

@@ -18,7 +18,7 @@
 <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <x-card color="bg-info" value="837" icon="ion ion-person-stalker">
+      <x-card color="bg-info" value="{{ $student }}" icon="ion ion-person-stalker">
         <p>Siswa</p>
       </x-card>
       <x-card color="bg-success" value="Rp {{ $sumToday }}" icon="fas fa-money-bill">

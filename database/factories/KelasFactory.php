@@ -17,7 +17,7 @@ class KelasFactory extends Factory
     public function definition()
     {
         return [
-            'nama_kelas' => $this->faker->country()
+            'nama_kelas' => $this->faker->randomElement($array = array('X IPA 1', 'XI IPA 2', 'XII IPA 3')),
         ];
     }
 }

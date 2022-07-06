@@ -18,7 +18,9 @@ class DashboardController extends Controller
         $user = User::count();
         $laki_laki = Student::where('jenis_kelamin', 'Laki-laki')->count();
         $perempuan = Student::where('jenis_kelamin', 'Perempuan')->count();
-        return view('admin.dashboard', compact('student', 'class', 'user', 'laki_laki', 'perempuan'));
+        $user_spp = User::where('role', 'spp')->count();
+        $user_buku = User::where('role', 'buku')->count();
+        return view('admin.dashboard', compact('student', 'class', 'user', 'laki_laki', 'perempuan', 'user_spp', 'user_buku'));
     }
 
     public function bukuDashboard() {

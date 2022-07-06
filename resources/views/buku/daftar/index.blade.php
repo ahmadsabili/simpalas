@@ -83,18 +83,18 @@
       });
 
       $('body').on('click', '.delete', function () {
-        if (confirm("Hapus siswa?") == true) {
+        if (confirm("Hapus buku?") == true) {
           var id = $(this).data('id');
           // ajax
           $.ajax({
             type:"POST",
-            url: "{{ url('delete-student') }}",
+            url: "{{ url('buku/daftar-buku/delete-buku') }}",
             data: { id: id},
             dataType: 'json',
             success: function(res){
               var oTable = $('#students-table').dataTable();
               oTable.fnDraw(false);
-              toastr.success("SPP berhasil dihapus !")
+              toastr.success("Buku berhasil dihapus !")
             }
           });
         }

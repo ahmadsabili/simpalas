@@ -83,7 +83,7 @@
       });
 
       $('body').on('click', '.delete', function () {
-        if (confirm("Hapus Komite?") == true) {
+        if (confirm("Hapus SPP?") == true) {
           var id = $(this).data('id');
           // ajax
           $.ajax({

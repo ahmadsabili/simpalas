@@ -18,22 +18,22 @@
 <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <x-card color="bg-info" value="837" icon="ion ion-person-stalker" shortlink="{{ route('students.index') }}">
+      <x-card color="bg-info" value="{{ $student }}" icon="ion ion-person-stalker" shortlink="{{ route('students.index') }}">
         <p>Siswa</p>
       </x-card>
-      <x-card color="bg-success" value="24" icon="fas fa-school" shortlink="{{ route('students.index') }}">
+      <x-card color="bg-success" value="{{ $class }}" icon="fas fa-school" shortlink="{{ route('classes.index') }}">
         <p>Kelas</p>
       </x-card>
       <!-- ./col -->
-      <x-card color="bg-warning" value="1" icon="fas fa-user">
-        <p>User Komite</p>
+      <x-card color="bg-warning" value="{{ $user_spp }}" icon="fas fa-user">
+        <p>User SPP</p>
       </x-card>
       <!-- ./col -->
       <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>1</h3>
+            <h3>{{ $user_buku }}</h3>
             <p>User Buku</p>
           </div>
           <div class="icon">
@@ -78,8 +78,8 @@
   datasets: [{
     label: 'Jumlah Siswa',
     data: [
-      385,
-      452,
+      {{ $laki_laki }},
+      {{ $perempuan }},
     ],
     backgroundColor: [
       'rgb(54, 162, 235)',

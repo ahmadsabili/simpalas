@@ -33,10 +33,16 @@
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item bg-danger">
-            <i class="fas fa-sign-out-alt mr-1"></i>
-            Logout
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button class="dropdown-item" type="submit">
+              <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </button>
+          {{-- <a href="{{ route('logout') }}" class="dropdown-item bg-danger"> --}}
+            {{-- <i class="fas fa-sign-out-alt mr-1"></i> --}}
+            {{-- Logout --}}
           </a>
+        </form>
         </div>
       </li>
     </ul>

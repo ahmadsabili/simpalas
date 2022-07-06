@@ -45,6 +45,7 @@
                     <th>Untuk Tahun Ajaran</th>
                     <th>Nominal</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -56,13 +57,20 @@
                           <td>{{ ++$i }}</td>
                           <td>{{ $row->siswa->nisn }}</td>
                           <td>{{ $row->siswa->nama }}</td>
-                          <td>{{ $row->kelas }}</td>
+                          <td>{{ $row->siswa->kelas->nama_kelas }}</td>
                           <td>{{ $row->updated_at }}</td>
                           <td>{{ $row->bulan }}</td>
                           <td>{{ $row->tahun_ajaran }}</td>
                           <td>@currency($row->nominal)</td>
                           <td>
                             <span class="badge bg-success">DIBAYAR</span>
+                          </td>
+                          <td>
+                            <form action="{{ route('spp.status.destroy', $row->id) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Hapus data pembayaran ini ?')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus"><i class="fas fa-trash"></i></button>
+                            </form>
                           </td>
                         </tr>
                     @endforeach

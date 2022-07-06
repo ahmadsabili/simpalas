@@ -80,7 +80,7 @@ class SppController extends Controller
                     }
                 });
                 
-                return redirect()->route('spp.riwayat.index')
+                return redirect()->route('spp.status.show', $request->id_siswa)
                     ->with('success', 'Pembayaran berhasil disimpan!');
             }else{
                 return back()
@@ -105,6 +105,13 @@ class SppController extends Controller
         return view('spp.status-pembayaran.show', compact('pembayaran', 'nisn'));
     }
 
+    public function statusDestroy($id) {
+        $pembayaran = PembayaranSpp::find($id);
+        $pembayaran->delete();
+        return redirect()->back()
+            ->with('success', 'Pembayaran berhasil dihapus!');
+    }
+
     public function daftarSppIndex() {
         if(request()->ajax()) {
             return datatables()->of(Spp::select('*'))
@@ -125,8 +132,15 @@ class SppController extends Controller
         return redirect()->route('spp.daftar.index')->with('success','SPP berhasil ditambahkan!');
     }
 
-    public function daftarSppEdit() {
-        
+    public function daftarSppEdit($id) {
+        $spp = Spp::find($id);
+        return view('spp.daftar.edit', compact('spp'));
+    }
+
+    public function daftarSppUpdate(Request $request, $id) {
+        $spp = Spp::find($id);
+        $spp->update($request->all());
+        return redirect()->route('spp.daftar.index')->with('success','SPP berhasil diubah!');
     }
 
     public function daftarSppDestroy(Request $request) {
